@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডেভেলপার ডকুমেন্টেশন | ZontroPay</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">যন্ত্র<span>পে</span></div>
+        <div class="nav-links">
+            <a href="index.html">হোম</a>
+            <a href="developers.html" class="active">ডেভেলপার</a>
+            <a href="contact.html">যোগাযোগ</a>
+        </div>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+    </nav>
+
+    <section>
+        <div class="section-title reveal">
+            <h1>ডেভেলপার API ডকুমেন্টেশন</h1>
+            <p>সহজেই আপনার অ্যাপ বা ওয়েবসাইটে ZontroPay ইন্টিগ্রেট করুন</p>
+        </div>
+
+        <div class="legal-content reveal">
+            <h3>বেস ইউআরএল (Base URL)</h3>
+            <div class="code-block">https://api.zontropay.com/v1</div>
+
+            <h3>অথেন্টিকেশন (Authentication)</h3>
+            <p>প্রতিটি রিকোয়েস্টে আপনার API Key পাঠাতে হবে।</p>
+            <div class="code-block">Authorization: Bearer YOUR_API_KEY</div>
+
+            <h3>পেমেন্ট তৈরি করুন (Create Payment)</h3>
+            <p><span class="method-tag method-post">POST</span> /checkout/create</p>
+            <div class="code-block">
+{
+  "amount": 500,
+  "currency": "BDT",
+  "order_id": "ORD-101",
+  "customer_name": "Abir Hasan",
+  "success_url": "https://yoursite.com/success",
+  "cancel_url": "https://yoursite.com/cancel"
+}
+            </div>
+
+            <h3>পেমেন্ট ভেরিফাই করুন (Verify Payment)</h3>
+            <p><span class="method-tag method-post">POST</span> /checkout/verify</p>
+            <div class="code-block">
+{
+  "transaction_id": "ZT-998877",
+  "order_id": "ORD-101"
+}
+            </div>
+
+            <h3>ওয়েব হুক (Webhook)</h3>
+            <p>পেমেন্ট সফল হলে আমরা আপনার দেওয়া URL-এ একটি POST রিকোয়েস্ট পাঠাবো।</p>
+            <div class="code-block">
+{
+  "status": "success",
+  "amount": 500,
+  "transaction_id": "ZT-998877",
+  "timestamp": "2026-03-19T10:00:00Z"
+}
+            </div>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
