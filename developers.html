@@ -7,33 +7,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
     <nav>
-        <div class="logo">যন্ত্র<span>পে</span></div>
+        <div class="logo">Zontro<span>Pay</span></div>
         <div class="nav-links">
             <a href="index.html">হোম</a>
+            <a href="services.html">সেবা</a>
+            <a href="gateways.html">গেটওয়ে</a>
             <a href="developers.html" class="active">ডেভেলপার</a>
             <a href="contact.html">যোগাযোগ</a>
+            <a href="https://app.zontropay.com" class="btn-nav">লগইন</a>
         </div>
         <div class="menu-toggle"><span></span><span></span><span></span></div>
     </nav>
 
-    <section>
-        <div class="section-title reveal">
-            <h1>ডেভেলপার API ডকুমেন্টেশন</h1>
-            <p>সহজেই আপনার অ্যাপ বা ওয়েবসাইটে ZontroPay ইন্টিগ্রেট করুন</p>
-        </div>
+    <header class="hero" style="min-height: 60vh; padding-bottom: 2rem;">
+        <div class="hero-badge reveal">API Documentation</div>
+        <h1 class="reveal">ডেভেলপার <span>ডকুমেন্টেশন</span></h1>
+        <p class="reveal">সহজেই আপনার অ্যাপ বা ওয়েবসাইটে ZontroPay ইন্টিগ্রেট করুন। আমাদের শক্তিশালী API ব্যবহার করে পেমেন্ট গ্রহণ শুরু করুন আজই।</p>
+    </header>
 
-        <div class="legal-content reveal">
-            <h3>বেস ইউআরএল (Base URL)</h3>
-            <div class="code-block">https://api.zontropay.com/v1</div>
+    <section class="legal-content reveal">
+        <h3>বেস ইউআরএল (Base URL)</h3>
+        <div class="code-block">https://api.zontropay.com/v1</div>
 
-            <h3>অথেন্টিকেশন (Authentication)</h3>
-            <p>প্রতিটি রিকোয়েস্টে আপনার API Key পাঠাতে হবে।</p>
-            <div class="code-block">Authorization: Bearer YOUR_API_KEY</div>
+        <h3>অথেন্টিকেশন (Authentication)</h3>
+        <p>প্রতিটি রিকোয়েস্টে আপনার API Key পাঠাতে হবে। এটি হেডার হিসেবে পাঠাতে হবে।</p>
+        <div class="code-block">Authorization: Bearer YOUR_API_KEY</div>
 
-            <h3>পেমেন্ট তৈরি করুন (Create Payment)</h3>
-            <p><span class="method-tag method-post">POST</span> /checkout/create</p>
-            <div class="code-block">
+        <h3>পেমেন্ট তৈরি করুন (Create Payment)</h3>
+        <p><span class="method-tag method-post">POST</span> /checkout/create</p>
+        <div class="code-block">
 {
   "amount": 500,
   "currency": "BDT",
@@ -42,29 +48,64 @@
   "success_url": "https://yoursite.com/success",
   "cancel_url": "https://yoursite.com/cancel"
 }
-            </div>
+        </div>
 
-            <h3>পেমেন্ট ভেরিফাই করুন (Verify Payment)</h3>
-            <p><span class="method-tag method-post">POST</span> /checkout/verify</p>
-            <div class="code-block">
+        <h3>পেমেন্ট ভেরিফাই করুন (Verify Payment)</h3>
+        <p><span class="method-tag method-post">POST</span> /checkout/verify</p>
+        <div class="code-block">
 {
   "transaction_id": "ZT-998877",
   "order_id": "ORD-101"
 }
-            </div>
+        </div>
 
-            <h3>ওয়েব হুক (Webhook)</h3>
-            <p>পেমেন্ট সফল হলে আমরা আপনার দেওয়া URL-এ একটি POST রিকোয়েস্ট পাঠাবো।</p>
-            <div class="code-block">
+        <h3>ওয়েব হুক (Webhook)</h3>
+        <p>পেমেন্ট সফল হলে আমরা আপনার দেওয়া URL-এ একটি POST রিকোয়েস্ট পাঠাবো।</p>
+        <div class="code-block">
 {
   "status": "success",
   "amount": 500,
   "transaction_id": "ZT-998877",
   "timestamp": "2026-03-19T10:00:00Z"
 }
-            </div>
         </div>
     </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">Zontro<span>Pay</span></div>
+                <p style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">বাংলাদেশের সবচেয়ে দ্রুত এবং নিরাপদ পেমেন্ট গেটওয়ে সমাধান। আমরা ক্ষুদ্র ও মাঝারি উদ্যোক্তাদের ডিজিটাল পেমেন্ট গ্রহণে সহায়তা করি।</p>
+            </div>
+            <div class="footer-col">
+                <h4>কোম্পানি</h4>
+                <ul>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="contact.html">যোগাযোগ</a></li>
+                    <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>সেবা</h4>
+                <ul>
+                    <li><a href="services.html">পেমেন্ট গেটওয়ে</a></li>
+                    <li><a href="gateways.html">পেমেন্ট মেথড</a></li>
+                    <li><a href="developers.html">ডেভেলপার API</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>সাপোর্ট</h4>
+                <ul>
+                    <li><a href="terms.html">শর্তাবলী</a></li>
+                    <li><a href="refund.html">রিফান্ড পলিসি</a></li>
+                    <li><a href="contact.html">হেল্প সেন্টার</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+            &copy; 2026 ZontroPay. All rights reserved.
+        </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>

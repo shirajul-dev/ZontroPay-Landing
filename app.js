@@ -19,10 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle) {
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            const spans = menuToggle.querySelectorAll('span');
-            spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-            spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(7px, -7px)' : 'none';
+            menuToggle.classList.toggle('active');
         });
     }
 
@@ -32,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealElements.forEach(el => {
             const windowHeight = window.innerHeight;
             const elementTop = el.getBoundingClientRect().top;
-            const elementVisible = 150;
+            const elementVisible = 100;
             if (elementTop < windowHeight - elementVisible) {
                 el.classList.add('active');
             }
@@ -41,39 +38,44 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Initial check
 
-    // Smooth Scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Page Transition Effect
-    const links = document.querySelectorAll('a:not([href^="#"]):not([target="_blank"])');
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            if (href && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
-                e.preventDefault();
-                document.body.style.opacity = '0';
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 400);
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all other items
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add('active');
             }
         });
     });
 
-    // Skeleton Loading Simulation (for demo)
-    const skeletons = document.querySelectorAll('.skeleton');
-    if (skeletons.length > 0) {
-        setTimeout(() => {
-            skeletons.forEach(s => {
-                s.classList.remove('skeleton');
-                // If it's an image placeholder, we could set a real src here
-            });
-        }, 1500);
-    }
+    // Background Blob Movement
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        const blob1 = document.querySelector('.blob-1');
+        const blob2 = document.querySelector('.blob-2');
+        
+        if (blob1) blob1.style.transform = `translate(${x * 40}px, ${y * 40}px)`;
+        if (blob2) blob2.style.transform = `translate(${-x * 40}px, ${-y * 40}px)`;
+    });
+
+    // Smooth Scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 });

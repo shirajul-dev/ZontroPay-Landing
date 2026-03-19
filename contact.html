@@ -7,55 +7,97 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
     <nav>
-        <div class="logo">যন্ত্র<span>পে</span></div>
+        <div class="logo">Zontro<span>Pay</span></div>
         <div class="nav-links">
             <a href="index.html">হোম</a>
+            <a href="services.html">সেবা</a>
+            <a href="gateways.html">গেটওয়ে</a>
+            <a href="developers.html">ডেভেলপার</a>
             <a href="contact.html" class="active">যোগাযোগ</a>
+            <a href="https://app.zontropay.com" class="btn-nav">লগইন</a>
         </div>
         <div class="menu-toggle"><span></span><span></span><span></span></div>
     </nav>
 
-    <section>
-        <div class="section-title reveal">
-            <h1>আমাদের সাথে যোগাযোগ করুন</h1>
-            <p>যেকোনো প্রশ্ন বা সহযোগিতার জন্য আমাদের মেসেজ দিন</p>
-        </div>
+    <header class="hero" style="min-height: 60vh; padding-bottom: 2rem;">
+        <div class="hero-badge reveal">Contact Us</div>
+        <h1 class="reveal">আমাদের সাথে <span>যোগাযোগ</span> করুন</h1>
+        <p class="reveal">যেকোনো প্রশ্ন বা সহযোগিতার জন্য আমাদের মেসেজ দিন। আমাদের টিম দ্রুত আপনার সাথে যোগাযোগ করবে।</p>
+    </header>
 
-        <div class="contact-container reveal">
-            <div class="contact-form">
-                <form action="#">
-                    <div class="form-group">
-                        <label>আপনার নাম</label>
-                        <input type="text" placeholder="নাম লিখুন" required>
-                    </div>
-                    <div class="form-group">
-                        <label>ইমেইল ঠিকানা</label>
-                        <input type="email" placeholder="ইমেইল লিখুন" required>
-                    </div>
-                    <div class="form-group">
-                        <label>মেসেজ</label>
-                        <textarea placeholder="আপনার মেসেজ এখানে লিখুন..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">পাঠিয়ে দিন</button>
-                </form>
-            </div>
-            <div class="contact-info">
-                <h3>অফিস ঠিকানা</h3>
-                <p>লেভেল ৫, সফটওয়্যার টেকনোলজি পার্ক,<br>কারওয়ান বাজার, ঢাকা-১২১৫, বাংলাদেশ।</p>
-                <br>
-                <h3>ফোন</h3>
-                <p>+৮৮০ ১৭০০-০০০০০০</p>
-                <br>
-                <h3>ইমেইল</h3>
-                <p>info@zontropay.com</p>
-                <br>
-                <div style="width: 100%; height: 300px; border-radius: 15px; overflow: hidden; box-shadow: var(--shadow);">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9024424301394!2d90.3910801154316!3d23.750867194676735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8bd55555555%3A0x5555555555555555!2sSoftware%20Technology%20Park!5e0!3m2!1sen!2sbd!4v1647684567890!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <section class="contact-container reveal">
+        <div class="contact-form">
+            <form action="#">
+                <div class="form-group">
+                    <label>আপনার নাম</label>
+                    <input type="text" placeholder="নাম লিখুন" required>
                 </div>
+                <div class="form-group">
+                    <label>ইমেইল ঠিকানা</label>
+                    <input type="email" placeholder="ইমেইল লিখুন" required>
+                </div>
+                <div class="form-group">
+                    <label>মেসেজ</label>
+                    <textarea placeholder="আপনার মেসেজ এখানে লিখুন..." rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">পাঠিয়ে দিন</button>
+            </form>
+        </div>
+        <div class="contact-info">
+            <h3>অফিস ঠিকানা</h3>
+            <p>লেভেল ৫, সফটওয়্যার টেকনোলজি পার্ক,<br>কারওয়ান বাজার, ঢাকা-১২১৫, বাংলাদেশ।</p>
+            
+            <h3>ফোন</h3>
+            <p>+৮৮০ ১৭০০-০০০০০০</p>
+            
+            <h3>ইমেইল</h3>
+            <p>info@zontropay.com</p>
+            
+            <div style="width: 100%; height: 300px; border-radius: 24px; overflow: hidden; border: 1px solid var(--border);">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9024424301394!2d90.3910801154316!3d23.750867194676735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8bd55555555%3A0x5555555555555555!2sSoftware%20Technology%20Park!5e0!3m2!1sen!2sbd!4v1647684567890!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">Zontro<span>Pay</span></div>
+                <p style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">বাংলাদেশের সবচেয়ে দ্রুত এবং নিরাপদ পেমেন্ট গেটওয়ে সমাধান। আমরা ক্ষুদ্র ও মাঝারি উদ্যোক্তাদের ডিজিটাল পেমেন্ট গ্রহণে সহায়তা করি।</p>
+            </div>
+            <div class="footer-col">
+                <h4>কোম্পানি</h4>
+                <ul>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="contact.html">যোগাযোগ</a></li>
+                    <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>সেবা</h4>
+                <ul>
+                    <li><a href="services.html">পেমেন্ট গেটওয়ে</a></li>
+                    <li><a href="gateways.html">পেমেন্ট মেথড</a></li>
+                    <li><a href="developers.html">ডেভেলপার API</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>সাপোর্ট</h4>
+                <ul>
+                    <li><a href="terms.html">শর্তাবলী</a></li>
+                    <li><a href="refund.html">রিফান্ড পলিসি</a></li>
+                    <li><a href="contact.html">হেল্প সেন্টার</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+            &copy; 2026 ZontroPay. All rights reserved.
+        </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>
