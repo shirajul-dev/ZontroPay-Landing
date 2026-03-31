@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1138" height="640" viewBox="0 0 1138 640" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1138" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#1F2937"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="120" y1="80" x2="900" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB6514" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1138" height="640" rx="24" fill="url(#g1)"/>
+  <rect x="40" y="40" width="1058" height="560" rx="20" fill="#0B1220" stroke="#2F3A4C"/>
+  <rect x="40" y="40" width="1058" height="560" rx="20" fill="url(#g2)"/>
+
+  <rect x="90" y="90" width="958" height="58" rx="10" fill="#0F172A" stroke="#334155"/>
+  <text x="120" y="126" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="20" font-weight="700">ZontroPay Platform Console</text>
+
+  <rect x="90" y="172" width="460" height="370" rx="14" fill="#111827" stroke="#334155"/>
+  <text x="112" y="206" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16" font-weight="700">Live Transaction Stream</text>
+  <text x="112" y="236" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Realtime card, bank, wallet, and transfer events</text>
+  <rect x="112" y="262" width="416" height="44" rx="8" fill="#0B1220"/>
+  <rect x="112" y="318" width="416" height="44" rx="8" fill="#0B1220"/>
+  <rect x="112" y="374" width="416" height="44" rx="8" fill="#0B1220"/>
+  <rect x="112" y="430" width="416" height="44" rx="8" fill="#0B1220"/>
+  <rect x="112" y="486" width="416" height="34" rx="8" fill="#0B1220"/>
+
+  <rect x="572" y="172" width="476" height="178" rx="14" fill="#111827" stroke="#334155"/>
+  <text x="594" y="206" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16" font-weight="700">Approval Rate by Gateway</text>
+  <polyline points="604,316 658,280 712,292 766,248 820,260 874,224 928,236 982,210" fill="none" stroke="#FB6514" stroke-width="5" stroke-linecap="round"/>
+
+  <rect x="572" y="364" width="228" height="178" rx="14" fill="#111827" stroke="#334155"/>
+  <text x="594" y="398" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Recovered Failed Payments</text>
+  <text x="594" y="462" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">4,812</text>
+
+  <rect x="820" y="364" width="228" height="178" rx="14" fill="#111827" stroke="#334155"/>
+  <text x="842" y="398" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Avg Settlement Time</text>
+  <text x="842" y="462" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">T+1</text>
+</svg>

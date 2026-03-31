@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="518" height="681" viewBox="0 0 518 681" fill="none">
+  <rect width="518" height="681" rx="24" fill="#0B1220"/>
+  <rect x="32" y="30" width="454" height="621" rx="18" fill="#111827" stroke="#334155"/>
+  <text x="56" y="76" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="22" font-weight="700">Checkout Flow Editor</text>
+  <text x="56" y="104" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Drag, reorder, and optimize payment paths</text>
+
+  <rect x="56" y="134" width="406" height="70" rx="10" fill="#0F172A"/>
+  <text x="74" y="176" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16">Card Payments</text>
+
+  <rect x="56" y="216" width="406" height="70" rx="10" fill="#0F172A"/>
+  <text x="74" y="258" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16">Bank Transfer</text>
+
+  <rect x="56" y="298" width="406" height="70" rx="10" fill="#0F172A"/>
+  <text x="74" y="340" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16">Wallets</text>
+
+  <rect x="56" y="380" width="406" height="70" rx="10" fill="#0F172A"/>
+  <text x="74" y="422" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16">USSD / Mobile Money</text>
+
+  <rect x="56" y="480" width="196" height="134" rx="12" fill="#0F172A" stroke="#334155"/>
+  <text x="72" y="514" fill="#94A3B8" font-family="Arial, sans-serif" font-size="12">Expected Lift</text>
+  <text x="72" y="570" fill="#FB6514" font-family="Arial, sans-serif" font-size="40" font-weight="700">+18%</text>
+
+  <rect x="266" y="480" width="196" height="134" rx="12" fill="#0F172A" stroke="#334155"/>
+  <text x="282" y="514" fill="#94A3B8" font-family="Arial, sans-serif" font-size="12">Drop-off Risk</text>
+  <text x="282" y="570" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="40" font-weight="700">Low</text>
+</svg>

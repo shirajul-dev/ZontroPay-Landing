@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="830" viewBox="0 0 830 830" fill="none">
+  <rect width="830" height="830" rx="28" fill="#0B1220"/>
+  <rect x="46" y="44" width="738" height="742" rx="20" fill="#111827" stroke="#334155"/>
+  <text x="84" y="104" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="28" font-weight="700">Compliance & Risk Center</text>
+  <text x="84" y="136" fill="#94A3B8" font-family="Arial, sans-serif" font-size="14">PCI-aligned controls, fraud policies, and audit readiness</text>
+
+  <rect x="84" y="178" width="662" height="120" rx="14" fill="#0F172A" stroke="#334155"/>
+  <text x="110" y="224" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="20">PCI Scope Status: Controlled</text>
+  <text x="110" y="258" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Tokenization enabled · Sensitive data masked · Access controls enforced</text>
+
+  <rect x="84" y="318" width="320" height="210" rx="14" fill="#0F172A" stroke="#334155"/>
+  <text x="108" y="356" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16" font-weight="700">Fraud Rules</text>
+  <text x="108" y="392" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Velocity limits, geo rules,
+3DS controls, device risk profile</text>
+
+  <rect x="426" y="318" width="320" height="210" rx="14" fill="#0F172A" stroke="#334155"/>
+  <text x="450" y="356" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16" font-weight="700">Audit Trail</text>
+  <text x="450" y="392" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Immutable event log for approvals,
+refunds, settlements, and overrides</text>
+
+  <rect x="84" y="548" width="662" height="188" rx="14" fill="#0F172A" stroke="#334155"/>
+  <text x="108" y="588" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16" font-weight="700">Risk Signals</text>
+  <polyline points="112,682 176,640 240,655 304,600 368,614 432,576 496,598 560,560 624,548 688,536" fill="none" stroke="#FB6514" stroke-width="5" stroke-linecap="round"/>
+</svg>

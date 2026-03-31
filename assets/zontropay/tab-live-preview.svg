@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="830" viewBox="0 0 830 830" fill="none">
+  <rect width="830" height="830" rx="28" fill="#0B1220"/>
+  <rect x="46" y="44" width="738" height="742" rx="20" fill="#111827" stroke="#334155"/>
+  <text x="84" y="104" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="28" font-weight="700">Live Preview & Safe Release</text>
+  <text x="84" y="136" fill="#94A3B8" font-family="Arial, sans-serif" font-size="14">Validate checkout updates before customers ever see them</text>
+
+  <rect x="84" y="178" width="446" height="540" rx="16" fill="#0F172A" stroke="#334155"/>
+  <text x="110" y="218" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="18" font-weight="700">Checkout Preview</text>
+  <rect x="110" y="248" width="394" height="58" rx="10" fill="#111827"/>
+  <rect x="110" y="320" width="394" height="58" rx="10" fill="#111827"/>
+  <rect x="110" y="392" width="394" height="58" rx="10" fill="#111827"/>
+  <rect x="110" y="464" width="394" height="58" rx="10" fill="#111827"/>
+  <rect x="110" y="536" width="394" height="58" rx="10" fill="#111827"/>
+
+  <rect x="550" y="178" width="196" height="172" rx="14" fill="#0F172A" stroke="#334155"/>
+  <text x="570" y="214" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16" font-weight="700">Validation</text>
+  <text x="570" y="252" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Gateway fallback: OK</text>
+  <text x="570" y="282" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Webhook signature: OK</text>
+  <text x="570" y="312" fill="#94A3B8" font-family="Arial, sans-serif" font-size="13">Retry policy: OK</text>
+
+  <rect x="550" y="370" width="196" height="172" rx="14" fill="#0F172A" stroke="#334155"/>
+  <text x="570" y="406" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="16" font-weight="700">Projected Impact</text>
+  <text x="570" y="456" fill="#FB6514" font-family="Arial, sans-serif" font-size="34" font-weight="700">+12.4%</text>
+  <text x="570" y="484" fill="#94A3B8" font-family="Arial, sans-serif" font-size="12">Estimated conversion lift</text>
+
+  <rect x="550" y="562" width="196" height="156" rx="14" fill="#FB6514"/>
+  <text x="572" y="620" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="700">Safe Deploy</text>
+  <text x="572" y="646" fill="#FFF7ED" font-family="Arial, sans-serif" font-size="12">Push validated changes
+with rollback guardrails</text>
+</svg>
