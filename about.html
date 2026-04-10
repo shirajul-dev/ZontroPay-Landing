@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>About ZontroPay</title>
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="./assets/zontropay/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="./assets/zontropay/favicon.png" />
+    <link rel='stylesheet' id='pxl-main-css-css' href='./assets/wp-content/plugins/case-addons/assets/css/pxl-main-css.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-pro-css' href='./assets/wp-content/plugins/case-addons/assets/libs/font-awesome-pro/css/all.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='pxl-caseicon-css' href='./assets/wp-content/themes/brighthub/assets/css/pxl-caseicon.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='pxl-phosphor-css' href='./assets/wp-content/themes/brighthub/assets/css/pxl-phosphor.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='pxl-grid-css' href='./assets/wp-content/themes/brighthub/assets/css/pxl-grid.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='pxl-style-css' href='./assets/wp-content/themes/brighthub/assets/css/pxl-style.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='pxl-base-css' href='./assets/wp-content/themes/brighthub/pxl-base.min.css' type='text/css' media='all' />
+    <style>
+        :root {
+            --accent: #fb6514;
+            --ink: #0b0f19;
+            --muted: #5b6472;
+            --line: rgba(11, 15, 25, 0.08);
+            --panel: rgba(255, 255, 255, 0.84);
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            background:
+                radial-gradient(circle at top left, rgba(251, 101, 20, 0.16), transparent 28%),
+                radial-gradient(circle at top right, rgba(251, 101, 20, 0.10), transparent 26%),
+                linear-gradient(180deg, #fff8f4 0%, #ffffff 30%, #f7f5f2 100%);
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        a { color: inherit; text-decoration: none; }
+        .page-shell {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 56px;
+        }
+        .site-header, .site-footer, .hero, .card {
+            background: var(--panel);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 18px 50px rgba(11, 15, 25, 0.08);
+        }
+        .site-header {
+            border-radius: 24px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            position: sticky;
+            top: 14px;
+            z-index: 5;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .brand img { height: 32px; width: auto; display: block; }
+        .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .nav::-webkit-scrollbar { display: none; }
+        .nav a {
+            padding: 10px 14px;
+            border-radius: 999px;
+            color: var(--muted);
+            transition: all .2s ease;
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+        .nav a:hover, .nav a.active {
+            color: var(--ink);
+            background: rgba(251, 101, 20, 0.10);
+        }
+        .hero {
+            margin-top: 22px;
+            border-radius: 30px;
+            overflow: hidden;
+            padding: 54px 44px;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 28px;
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .eyebrow:before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 6px rgba(251, 101, 20, 0.12);
+        }
+        h1, h2, h3, p { margin: 0; }
+        h1 {
+            font-size: clamp(2.3rem, 5vw, 4.4rem);
+            line-height: 0.98;
+            letter-spacing: -0.05em;
+            max-width: 10ch;
+        }
+        .lead {
+            margin-top: 18px;
+            max-width: 60ch;
+            color: var(--muted);
+            font-size: 1.04rem;
+            line-height: 1.75;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 26px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+        .btn-secondary {
+            border-color: var(--line);
+            background: rgba(255,255,255,0.85);
+        }
+        .metrics {
+            display: grid;
+            gap: 14px;
+        }
+        .card {
+            border-radius: 24px;
+            padding: 22px;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .metric strong {
+            display: block;
+            font-size: 1.45rem;
+            letter-spacing: -0.04em;
+            margin-bottom: 4px;
+        }
+        .metric span {
+            color: var(--muted);
+            font-size: .95rem;
+        }
+        .section {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .section .card h3 { margin-bottom: 10px; font-size: 1.05rem; }
+        .section .card p { color: var(--muted); line-height: 1.7; }
+        .site-footer {
+            margin-top: 24px;
+            border-radius: 24px;
+            padding: 18px 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--muted);
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .footer-links a:hover { color: var(--ink); }
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; padding: 34px 24px; }
+            .section { grid-template-columns: 1fr; }
+            .metric-grid { grid-template-columns: 1fr; }
+            .site-header {
+                position: static;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="./index.html">
+                <img src="./assets/logo_v2_black.png" alt="ZontroPay" />
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <a href="./index.html">Home</a>
+                <a class="active" href="./about.html">About</a>
+                <a href="./our-teams.html">Our Team</a>
+                <a href="./contact.html">Contact</a>
+                <a href="./privacy-policy.html">Privacy</a>
+                <a href="./terms-conditions.html">Terms</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div>
+                    <div class="eyebrow">Built for payment teams</div>
+                    <h1>About ZontroPay</h1>
+                    <p class="lead">ZontroPay is designed to give revenue, finance, and operations teams a single place to manage checkout performance, recovery workflows, and settlement visibility. The platform turns fragmented payment data into clear action.</p>
+                    <div class="actions">
+                        <a class="btn btn-primary" href="./contact.html">Talk to Sales</a>
+                        <a class="btn btn-secondary" href="./terms-conditions.html">View Terms</a>
+                    </div>
+                </div>
+                <div class="metrics card">
+                    <div class="metric-grid">
+                        <div class="metric card">
+                            <strong>24/7</strong>
+                            <span>Monitoring coverage</span>
+                        </div>
+                        <div class="metric card">
+                            <strong>1 Dashboard</strong>
+                            <span>For payment operations</span>
+                        </div>
+                        <div class="metric card">
+                            <strong>Faster</strong>
+                            <span>Issue detection and routing</span>
+                        </div>
+                        <div class="metric card">
+                            <strong>Clear</strong>
+                            <span>Settlement visibility</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <article class="card">
+                    <h3>What we focus on</h3>
+                    <p>Higher approvals, fewer failed transactions, tighter reconciliation, and faster recovery from payment errors across every channel.</p>
+                </article>
+                <article class="card">
+                    <h3>How we work</h3>
+                    <p>We keep the workflow practical: connect payment systems, surface the right insights, and help teams act before revenue is lost.</p>
+                </article>
+                <article class="card">
+                    <h3>Who it is for</h3>
+                    <p>Built for merchants, SaaS businesses, and finance teams that need a cleaner operating layer for payment performance.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <span>© 2026 ZontroPay. Payment infrastructure for growing teams.</span>
+            <div class="footer-links">
+                <a href="./index.html">Home</a>
+                <a href="./contact.html">Contact</a>
+                <a href="./terms-conditions.html">Terms</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
