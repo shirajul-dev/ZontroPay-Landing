@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Hosted Checkout - ZontroPay</title>
+    <meta name="robots" content="index,follow">
+    <link rel="icon" href="./assets/zontropay/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="./assets/zontropay/favicon.png">
+    <style>
+        :root {
+            --accent: #fb6514;
+            --accent-strong: #ef5a0a;
+            --ink: #101a2d;
+            --muted: #66758c;
+            --line: rgba(16, 26, 45, 0.12);
+            --panel: rgba(255, 255, 255, 0.93);
+            --panel-soft: rgba(255, 255, 255, 0.82);
+            --ok: #16a34a;
+            --radius-xl: 26px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-lg: 0 28px 80px rgba(16, 26, 45, 0.2);
+            --shadow-sm: 0 8px 20px rgba(16, 26, 45, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 12% 16%, rgba(251, 101, 20, 0.2) 0%, rgba(251, 101, 20, 0) 36%),
+                radial-gradient(circle at 88% 88%, rgba(22, 163, 74, 0.14) 0%, rgba(22, 163, 74, 0) 40%),
+                linear-gradient(155deg, #fff7ef 0%, #eef4ff 56%, #eef9f2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 26px 16px;
+        }
+
+        .checkout-shell {
+            width: min(1160px, 100%);
+            border-radius: calc(var(--radius-xl) + 4px);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(155deg, var(--panel) 0%, var(--panel-soft) 100%);
+            backdrop-filter: blur(12px);
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.06fr 0.94fr;
+        }
+
+        .summary-panel {
+            position: relative;
+            padding: 34px;
+            border-right: 1px solid var(--line);
+            background:
+                linear-gradient(170deg, rgba(251, 101, 20, 0.11) 0%, rgba(251, 101, 20, 0) 58%),
+                linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+        }
+
+        .summary-panel::after {
+            content: "";
+            position: absolute;
+            right: -1px;
+            top: 24px;
+            bottom: 24px;
+            width: 1px;
+            background: linear-gradient(180deg, rgba(251, 101, 20, 0) 0%, rgba(251, 101, 20, 0.45) 48%, rgba(251, 101, 20, 0) 100%);
+        }
+
+        .top-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .brand-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #27344a;
+            border: 1px solid rgba(16, 26, 45, 0.1);
+            border-radius: 999px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.78);
+        }
+
+        .brand-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .timer {
+            color: #55667e;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+        }
+
+        .summary-panel h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: #111a2e;
+        }
+
+        .summary-lead {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .hero-amount {
+            margin-top: 16px;
+            border-radius: var(--radius-lg);
+            border: 1px solid #dce8fa;
+            background: linear-gradient(180deg, #eef5ff 0%, #e9f2ff 100%);
+            padding: 16px;
+        }
+
+        .hero-amount small {
+            display: block;
+            color: #607189;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        .hero-amount strong {
+            font-size: 34px;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: #0f1a2e;
+        }
+
+        .hero-amount .meta {
+            margin-top: 9px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            color: #4f6077;
+            font-size: 13px;
+        }
+
+        .meta-pill {
+            border: 1px solid #d6e4f8;
+            border-radius: 999px;
+            padding: 5px 10px;
+            background: #fff;
+            font-weight: 700;
+            color: #38557a;
+        }
+
+        .invoice-card {
+            margin-top: 16px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .line-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(16, 26, 45, 0.12);
+            color: #34455f;
+            font-size: 14px;
+        }
+
+        .line-row:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .line-row strong {
+            color: #121d33;
+        }
+
+        .line-row.total {
+            margin-top: 2px;
+            font-size: 19px;
+            font-weight: 800;
+            color: #0f1b30;
+        }
+
+        .promo-link {
+            margin-top: 10px;
+            display: inline-block;
+            color: #1570dc;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .trust-points {
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 9px;
+        }
+
+        .trust-points li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #324662;
+            font-size: 14px;
+        }
+
+        .trust-points .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(251, 101, 20, 0.14);
+            flex-shrink: 0;
+        }
+
+        .payment-panel {
+            padding: 34px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.76) 100%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .payment-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-head h2 {
+            margin: 0;
+            font-size: 30px;
+            letter-spacing: -0.02em;
+            color: #151f34;
+        }
+
+        .login-chip {
+            border: 1px solid #d8e6fb;
+            border-radius: 999px;
+            padding: 7px 11px;
+            background: #f7fbff;
+            color: #1b73da;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .payment-intro {
+            margin: 8px 0 14px;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .quick-pay {
+            width: 100%;
+            border: 0;
+            border-radius: var(--radius-md);
+            padding: 12px;
+            margin-bottom: 14px;
+            background: #111214;
+            color: #fff;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+
+        .or-split {
+            position: relative;
+            text-align: center;
+            color: #8a98aa;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .or-split::before,
+        .or-split::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 43%;
+            border-top: 1px solid var(--line);
+        }
+
+        .or-split::before {
+            left: 0;
+        }
+
+        .or-split::after {
+            right: 0;
+        }
+
+        .gateway-shell {
+            border: 1px solid #dbe8fb;
+            border-radius: var(--radius-lg);
+            padding: 12px;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+        }
+
+        .section-mini-title {
+            margin: 0 0 10px;
+            color: #5d6d84;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 800;
+        }
+
+        .type-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .type-tab {
+            border: 1px solid #d7e2f5;
+            border-radius: 10px;
+            background: #fff;
+            color: #4f627c;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 9px 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .type-tab:hover,
+        .type-tab.active {
+            border-color: rgba(251, 101, 20, 0.55);
+            box-shadow: inset 0 0 0 1px rgba(251, 101, 20, 0.35);
+            background: linear-gradient(180deg, #fff 0%, #fff8f4 100%);
+            color: #2f415d;
+        }
+
+        .gateway-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .gateway-card {
+            border: 1px solid #d8e4f6;
+            border-radius: var(--radius-md);
+            background: #fff;
+            padding: 11px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 74px;
+        }
+
+        .gateway-card:hover,
+        .gateway-card.active {
+            border-color: rgba(251, 101, 20, 0.55);
+            box-shadow: inset 0 0 0 1px rgba(251, 101, 20, 0.42);
+            background: linear-gradient(180deg, #fff 0%, #fff8f4 100%);
+            transform: translateY(-1px);
+        }
+
+        .gateway-logo {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            border: 1px solid #d7e6fc;
+            background: #edf4ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .gateway-logo img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .gateway-mark {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .gateway-copy {
+            min-width: 0;
+        }
+
+        .gateway-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #243753;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .gateway-sub {
+            margin-top: 2px;
+            font-size: 11px;
+            color: #6a7890;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .gateway-meta {
+            margin-top: 11px;
+            padding-top: 9px;
+            border-top: 1px dashed #d7e3f4;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .gateway-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #243651;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(251, 101, 20, 0.12);
+        }
+
+        .gateway-hint {
+            color: #66768b;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .detail-card {
+            margin-top: 12px;
+            border: 1px solid #dce5f2;
+            border-radius: var(--radius-md);
+            background: #fff;
+            padding: 14px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .detail-card h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #1e314e;
+        }
+
+        .detail-card p {
+            margin: 7px 0 0;
+            font-size: 13px;
+            color: #63738a;
+            line-height: 1.5;
+        }
+
+        .feature-list {
+            margin: 10px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #425773;
+            font-size: 13px;
+        }
+
+        .feature-list .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .status-note {
+            margin: 10px 0 0;
+            text-align: center;
+            color: #4f6179;
+            font-size: 12px;
+        }
+
+        .remember-row {
+            margin: 12px 0;
+            color: #5c6c80;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .emi-row {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 12px 0;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #576983;
+        }
+
+        .emi-pill {
+            border: 1px solid #d4deec;
+            border-radius: 9px;
+            background: #f5f9ff;
+            color: #256ec6;
+            padding: 8px 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .pay-btn {
+            width: 100%;
+            border: 0;
+            border-radius: 14px;
+            padding: 14px 16px;
+            font-size: 34px;
+            font-weight: 800;
+            color: #fff;
+            background: linear-gradient(120deg, #fb6514, #f88c20);
+            box-shadow: 0 14px 24px rgba(251, 101, 20, 0.28);
+            cursor: pointer;
+            transition: transform 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        .pay-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 28px rgba(251, 101, 20, 0.32);
+        }
+
+        .terms {
+            margin: 12px 0 0;
+            text-align: center;
+            color: #69788e;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .foot-row {
+            margin-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            color: #708198;
+            font-size: 13px;
+        }
+
+        .foot-row b {
+            color: #304f79;
+        }
+
+        .secure {
+            color: var(--ok);
+            font-weight: 800;
+        }
+
+        @media (max-width: 980px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-panel {
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .summary-panel::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 10px;
+            }
+
+            .summary-panel,
+            .payment-panel {
+                padding: 20px;
+            }
+
+            .summary-panel h1,
+            .payment-head h2 {
+                font-size: 24px;
+            }
+
+            .hero-amount strong {
+                font-size: 28px;
+            }
+
+            .type-tabs {
+                grid-template-columns: 1fr;
+            }
+
+            .gateway-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pay-btn {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="checkout-shell" aria-label="ZontroPay hosted checkout">
+        <div class="checkout-grid">
+            <section class="summary-panel" aria-label="Order summary panel">
+                <div class="top-strip">
+                    <span class="brand-chip"><span class="brand-dot"></span> ZontroPay Hosted Checkout</span>
+                    <span class="timer">06:29</span>
+                </div>
+
+                <h1>Complete your payment securely and instantly.</h1>
+                <p class="summary-lead">This checkout is encrypted end-to-end and auto-reconciled to your merchant dashboard in real time.</p>
+
+                <div class="hero-amount">
+                    <small>You are paying</small>
+                    <strong>BDT 320,030.00</strong>
+                    <div class="meta">
+                        <span>EMI available for this transaction.</span>
+                        <span class="meta-pill">Pay with QR</span>
+                    </div>
+                </div>
+
+                <div class="invoice-card">
+                    <div class="line-row"><span>Invoice</span><strong>#ZP-240817</strong></div>
+                    <div class="line-row"><span>Merchant</span><strong>Easy.com.bd</strong></div>
+                    <div class="line-row"><span>Subtotal</span><strong>BDT 320,000.00</strong></div>
+                    <div class="line-row"><span>Convenience Charge</span><strong>BDT 30.00</strong></div>
+                    <div class="line-row total"><span>Total</span><strong>BDT 320,030.00</strong></div>
+                    <a class="promo-link" href="#">Add promo code</a>
+                </div>
+
+                <ul class="trust-points">
+                    <li><span class="dot"></span> PCI-aligned transaction processing</li>
+                    <li><span class="dot"></span> Tokenized and SSL secured checkout session</li>
+                    <li><span class="dot"></span> Live payment status with callback confirmation</li>
+                </ul>
+            </section>
+
+            <section class="payment-panel" aria-label="Payment methods panel">
+                <div class="payment-head">
+                    <h2>Welcome back!</h2>
+                    <a class="login-chip" href="#">Login</a>
+                </div>
+                <p class="payment-intro">Pick a category, choose a gateway, and proceed in a secure flow.</p>
+
+                <button class="quick-pay" type="button">Pay with G Pay</button>
+                <div class="or-split">Or</div>
+
+                <div class="gateway-shell">
+                    <h3 class="section-mini-title">Payment Methods</h3>
+
+                    <div class="type-tabs" role="tablist" aria-label="Payment categories">
+                        <button class="type-tab active" type="button" role="tab" aria-selected="true" data-type="card">Card</button>
+                        <button class="type-tab" type="button" role="tab" aria-selected="false" data-type="wallet">Wallet</button>
+                        <button class="type-tab" type="button" role="tab" aria-selected="false" data-type="bank">Bank</button>
+                    </div>
+
+                    <div class="gateway-grid" id="gatewayGrid" role="list" aria-label="Gateway list"></div>
+
+                    <div class="gateway-meta">
+                        <span class="gateway-badge"><span class="badge-dot"></span><span id="gatewayBadge">Card Gateway</span></span>
+                        <span class="gateway-hint" id="gatewayHint">Fast authorization, cards enabled</span>
+                    </div>
+                </div>
+
+                <div class="detail-card" aria-live="polite">
+                    <h4 id="detailTitle">Visa Cards</h4>
+                    <p id="detailDesc">Visa secure rails with international acceptance and quick authorization.</p>
+                    <ul class="feature-list" id="featureList">
+                        <li><span class="dot"></span> 3D Secure supported checkout</li>
+                        <li><span class="dot"></span> Global card acceptance</li>
+                        <li><span class="dot"></span> Low fraud risk routing</li>
+                    </ul>
+                </div>
+
+                <p class="status-note" id="statusNote">Ensure your card supports online transactions.</p>
+
+                <label class="remember-row"><input type="checkbox"> Remember this payment detail</label>
+
+                <div class="emi-row">
+                    <span>Want to pay in instalments?</span>
+                    <span class="emi-pill">Select EMI Tenure</span>
+                </div>
+
+                <button class="pay-btn" type="button" id="payBtn">Pay BDT 320,030</button>
+
+                <p class="terms">By clicking Pay Now, you agree to our terms and authorize secure processing by ZontroPay.</p>
+
+                <div class="foot-row">
+                    <span>Powered by <b>ZontroPay</b></span>
+                    <span class="secure">Secured by SSL</span>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            var typeTabs = document.querySelectorAll('.type-tab');
+            var gatewayGrid = document.getElementById('gatewayGrid');
+            var gatewayBadge = document.getElementById('gatewayBadge');
+            var gatewayHint = document.getElementById('gatewayHint');
+            var detailTitle = document.getElementById('detailTitle');
+            var detailDesc = document.getElementById('detailDesc');
+            var featureList = document.getElementById('featureList');
+            var statusNote = document.getElementById('statusNote');
+            var payBtn = document.getElementById('payBtn');
+
+            var activeType = 'card';
+
+            var dataMap = {
+                card: [
+                    {
+                        key: 'visa',
+                        title: 'Visa Cards',
+                        sub: 'Credit and debit',
+                        mark: 'VI',
+                        markColor: '#1b55af',
+                        markBg: '#e8f1ff',
+                        markStroke: '#c8dbff',
+                        badge: 'Card Gateway',
+                        hint: 'Fast authorization, cards enabled',
+                        desc: 'Visa secure rails with international acceptance and quick authorization.',
+                        status: 'Ensure your card supports online transactions.',
+                        pay: 'Pay BDT 320,030',
+                        features: ['3D Secure supported checkout', 'Global card acceptance', 'Low fraud risk routing']
+                    },
+                    {
+                        key: 'mastercard',
+                        title: 'Mastercard',
+                        sub: 'Worldwide network',
+                        mark: 'MC',
+                        markColor: '#d84d1e',
+                        markBg: '#fff0e8',
+                        markStroke: '#ffd9c7',
+                        badge: 'Card Gateway',
+                        hint: 'Tokenized checkout, high approval',
+                        desc: 'Mastercard checkout route with reliable settlement and protection.',
+                        status: 'Use an enabled card for online and OTP transactions.',
+                        pay: 'Pay BDT 320,030',
+                        features: ['Strong fraud screening', 'High authorization success', 'Live reconciliation support']
+                    },
+                    {
+                        key: 'amex',
+                        title: 'American Express',
+                        sub: 'Premium card holders',
+                        mark: 'AX',
+                        markColor: '#007ca8',
+                        markBg: '#e8f8ff',
+                        markStroke: '#c8ecff',
+                        badge: 'Card Gateway',
+                        hint: 'Premium card processing active',
+                        desc: 'Amex processing with strict verification and secure cardholder controls.',
+                        status: 'CVV and expiry verification is required for Amex flow.',
+                        pay: 'Pay BDT 320,030',
+                        features: ['Advanced cardholder checks', 'Instant callback handling', 'Merchant-level logs included']
+                    }
+                ],
+                wallet: [
+                    {
+                        key: 'bkash',
+                        title: 'bKash',
+                        sub: 'Most popular MFS',
+                        logoSrc: './assets/zontropay/gateways/bkash.svg',
+                        badge: 'Wallet Gateway',
+                        hint: 'Instant wallet payment confirmation',
+                        desc: 'bKash wallet flow with quick handoff and instant confirmation.',
+                        status: 'Use your registered bKash number to proceed safely.',
+                        pay: 'Pay via bKash',
+                        features: ['Low-latency wallet handoff', 'OTP and PIN protected auth', 'Auto status update in dashboard']
+                    },
+                    {
+                        key: 'nagad',
+                        title: 'Nagad',
+                        sub: 'Fast transfer network',
+                        logoSrc: './assets/zontropay/gateways/nagad.svg',
+                        badge: 'Wallet Gateway',
+                        hint: 'Nagad rails with secure handoff',
+                        desc: 'Nagad checkout path optimized for smooth mobile conversion.',
+                        status: 'Confirm from your Nagad app to complete this payment.',
+                        pay: 'Pay via Nagad',
+                        features: ['Quick app approval', 'Real-time webhook status', 'Strong transaction traceability']
+                    },
+                    {
+                        key: 'rocket',
+                        title: 'Rocket',
+                        sub: 'DBBL wallet service',
+                        logoSrc: './assets/zontropay/gateways/rocket.svg',
+                        badge: 'Wallet Gateway',
+                        hint: 'DBBL wallet rails active',
+                        desc: 'Rocket wallet route designed for secure local payment completion.',
+                        status: 'Use your Rocket wallet credentials to continue.',
+                        pay: 'Pay via Rocket',
+                        features: ['Secure PIN flow', 'Reliable status callbacks', 'Optimized mobile conversion']
+                    },
+                    {
+                        key: 'upay',
+                        title: 'Upay',
+                        sub: 'UCB mobile wallet',
+                        logoSrc: './assets/zontropay/gateways/upay.svg',
+                        badge: 'Wallet Gateway',
+                        hint: 'Secure wallet handoff enabled',
+                        desc: 'Upay handoff path with secure wallet authentication and tracking.',
+                        status: 'Complete the payment request inside your Upay app.',
+                        pay: 'Pay via Upay',
+                        features: ['Strong wallet authentication', 'Minimal checkout friction', 'Merchant reporting included']
+                    }
+                ],
+                bank: [
+                    {
+                        key: 'city',
+                        title: 'City Bank',
+                        sub: 'Internet banking',
+                        mark: 'CB',
+                        markColor: '#1e62bf',
+                        markBg: '#eaf3ff',
+                        markStroke: '#d6e6ff',
+                        badge: 'Bank Gateway',
+                        hint: 'Bank transfer rails available',
+                        desc: 'Direct City Bank authorization channel for safe bank payment.',
+                        status: 'You will be redirected to City Bank for final authorization.',
+                        pay: 'Proceed with City Bank',
+                        features: ['Bank hosted authorization', 'Session timeout protection', 'Verified completion callback']
+                    },
+                    {
+                        key: 'brac',
+                        title: 'BRAC Bank',
+                        sub: 'Online banking',
+                        mark: 'BB',
+                        markColor: '#2f7f3b',
+                        markBg: '#eef8ef',
+                        markStroke: '#d9eddc',
+                        badge: 'Bank Gateway',
+                        hint: 'Bank-grade security active',
+                        desc: 'BRAC Bank route with secure redirect and callback confirmation.',
+                        status: 'Proceed to BRAC Bank to authorize this payment request.',
+                        pay: 'Proceed with BRAC Bank',
+                        features: ['Secure redirect-based flow', 'End-to-end encrypted handoff', 'Automated payment status sync']
+                    },
+                    {
+                        key: 'ebl',
+                        title: 'EBL SkyBanking',
+                        sub: 'Corporate and retail',
+                        mark: 'EBL',
+                        markColor: '#c25b1e',
+                        markBg: '#fff4ec',
+                        markStroke: '#ffe2d2',
+                        badge: 'Bank Gateway',
+                        hint: 'Structured bank transfer flow',
+                        desc: 'EBL route for a reliable bank checkout with full traceability.',
+                        status: 'Use your EBL credentials on the secure bank page.',
+                        pay: 'Proceed with EBL',
+                        features: ['Strong account verification', 'Fast success and failure callbacks', 'Merchant-facing audit trail']
+                    }
+                ]
+            };
+
+            function renderFeatures(items) {
+                featureList.innerHTML = '';
+                items.forEach(function (item) {
+                    var li = document.createElement('li');
+                    li.innerHTML = '<span class="dot"></span>' + item;
+                    featureList.appendChild(li);
+                });
+            }
+
+            function applyDetails(item) {
+                gatewayBadge.textContent = item.badge;
+                gatewayHint.textContent = item.hint;
+                detailTitle.textContent = item.title;
+                detailDesc.textContent = item.desc;
+                statusNote.textContent = item.status;
+                payBtn.textContent = item.pay;
+                renderFeatures(item.features);
+            }
+
+            function renderGateways(type) {
+                var items = dataMap[type] || [];
+                gatewayGrid.innerHTML = '';
+
+                items.forEach(function (item, index) {
+                    var btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'gateway-card' + (index === 0 ? ' active' : '');
+                    btn.setAttribute('role', 'listitem');
+                    btn.setAttribute('data-key', item.key);
+
+                    var logo;
+                    if (item.logoSrc) {
+                        logo = '<span class="gateway-logo"><img src="' + item.logoSrc + '" alt="' + item.title + '"></span>';
+                    } else {
+                        logo = '<span class="gateway-logo" style="background:' + item.markBg + ';border-color:' + item.markStroke + ';"><span class="gateway-mark" style="color:' + item.markColor + ';">' + item.mark + '</span></span>';
+                    }
+
+                    btn.innerHTML =
+                        logo +
+                        '<span class="gateway-copy">' +
+                        '<span class="gateway-title">' + item.title + '</span>' +
+                        '<span class="gateway-sub">' + item.sub + '</span>' +
+                        '</span>';
+
+                    btn.addEventListener('click', function () {
+                        var cards = gatewayGrid.querySelectorAll('.gateway-card');
+                        cards.forEach(function (card) {
+                            card.classList.remove('active');
+                        });
+                        btn.classList.add('active');
+                        applyDetails(item);
+                    });
+
+                    gatewayGrid.appendChild(btn);
+                });
+
+                if (items.length) {
+                    applyDetails(items[0]);
+                }
+            }
+
+            typeTabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    typeTabs.forEach(function (t) {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    tab.classList.add('active');
+                    tab.setAttribute('aria-selected', 'true');
+                    activeType = tab.getAttribute('data-type');
+                    renderGateways(activeType);
+                });
+            });
+
+            renderGateways(activeType);
+        })();
+    </script>
+</body>
+</html>
