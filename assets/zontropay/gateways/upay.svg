@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 40" role="img" aria-label="Upay logo">
+  <rect width="132" height="40" rx="10" fill="#ffffff"/>
+  <rect x="1" y="1" width="130" height="38" rx="9" fill="none" stroke="#d5e4ff"/>
+  <rect x="10" y="11" width="18" height="18" rx="5" fill="#0057d9"/>
+  <text x="15" y="24" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff">U</text>
+  <text x="36" y="25" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#0057d9">Upay</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 40" role="img" aria-label="Rocket logo">
+  <rect width="132" height="40" rx="10" fill="#ffffff"/>
+  <rect x="1" y="1" width="130" height="38" rx="9" fill="none" stroke="#edd3e8"/>
+  <path d="M19 10c5 0 9 4 9 9s-4 9-9 9-9-4-9-9 4-9 9-9zm0 5a4 4 0 100 8 4 4 0 000-8z" fill="#8c2f84"/>
+  <text x="36" y="25" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#8c2f84">Rocket</text>
+</svg>

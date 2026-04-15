@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 40" role="img" aria-label="Nagad logo">
+  <rect width="132" height="40" rx="10" fill="#ffffff"/>
+  <rect x="1" y="1" width="130" height="38" rx="9" fill="none" stroke="#ffd8c4"/>
+  <circle cx="20" cy="20" r="9" fill="#f26322"/>
+  <circle cx="20" cy="20" r="4" fill="#ffffff"/>
+  <text x="37" y="25" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#f26322">Nagad</text>
+</svg>
